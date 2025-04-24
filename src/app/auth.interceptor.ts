@@ -8,7 +8,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const memoryService = inject(MemoryServiceService);
   const router = inject(Router);
 
-  if (req.url.includes('/login')) {
+  if (req.url.includes('/login') || req.url.includes('/send-link') || req.url.includes('/reset-password')) {
     return next(req);
   }
 

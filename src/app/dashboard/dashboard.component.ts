@@ -65,6 +65,38 @@ export class DashboardComponent {
     }
   }
 
+  setAltText(): string {
+    const username = this.user?.username;
+    if (username) {
+      const nameParts = username.split(' ');
+      if (nameParts.length > 1) {
+        return nameParts.map(word => word.charAt(0).toUpperCase()).join('');
+      }
+      return username.charAt(0).toUpperCase();
+    }
+    return '';
+  }
+
+  getImageUrl(): string {
+    const profile = this.user?.profileImage;
+    if (profile) {
+      const fileName = profile.split('\\').pop(); // Declare and use fileName here
+      return `http://localhost:8081/document/${fileName}`;
+    }
+    return ''; // return empty string if profile path is not available
+  }
+
+  getInitials(): string {
+    const username = this.user?.username;
+    if (!username) return '';
+    const words = username.trim().split(' ');
+    let initials = words[0]?.charAt(0).toUpperCase();
+    if (words.length > 1) {
+      initials += words[1]?.charAt(0).toUpperCase();
+    }
+    return initials;
+  }
+
   profileImageURL: string = 'assets/default-profile.png'; // Default image
   selectedFile: File | null = null;
 
@@ -82,7 +114,6 @@ export class DashboardComponent {
       const formData = new FormData();
       formData.append("profilePic", this.selectedFile);
       this.userService.uploadProfile(this.id, formData).subscribe(response => {
-        alert("Profile picture uploaded successfully!");
       }, error => {
         console.log(error)
       });

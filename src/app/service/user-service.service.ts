@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Credential } from '../model/credential';
 import { User } from '../model/user';
+import { UpdatePass } from '../model/update-pass';
 
 @Injectable({
   providedIn: 'root'
@@ -38,5 +39,13 @@ export class UserServiceService {
 
   uploadProfile(id: string, file: FormData) {
     return this.userService.post(this.url + "/" + id, file)
+  }
+
+  sendLink(username: string) {
+    return this.userService.get(this.url + "/send-link/" + username)
+  }
+
+  resetPassword(updatePass: UpdatePass) {
+    return this.userService.post(this.url + "/reset-password", updatePass)
   }
 }
