@@ -1,11 +1,14 @@
 <div class="card-body m-5">
      <div class="container mt-3">
+          <div class="card-header text-center">
+               <h2>User List</h2>
+          </div>
           <form [formGroup]="searchName">
-               <div class="input-group">
-                    <input type="text" class="form-control m-3" placeholder="Custom Width" name="name"
+               <div class="d-flex justify-content-end">
+                    <input type="text" class="form-control me-3 my-3 w-auto" placeholder="Search Name" name="name"
                          formControlName="name">
                     <div class="alert alert-danger" *ngIf="fieldNames['name'].touched && fieldNames['name'].invalid">
-                         <div *ngIf="fieldNames['name'].errors && fieldNames['name'].errors['name']">
+                         <div *ngIf="fieldNames['name'].errors && fieldNames['name'].errors['required']">
                               This Field is required !!
                          </div>
                     </div>
@@ -41,34 +44,36 @@
                          <td>{{ user.pinCode }}</td>
                          <td>
                               <div class="d-flex justify-content-center">
+                                   <button mat-mini-fab class="btn btn-primary btn-sm me-3" (click)="viewDialog(user)">
+                                        View</button>
                                    <button mat-mini-fab class="btn btn-warning btn-sm me-3"
                                         (click)="updateDialog(user)">
-                                        Update</button>
+                                        Edit</button>
                                    <button mat-mini-fab class="btn btn-danger btn-sm" (click)="deleteDialog(user.id)">
                                         Delete</button>
                               </div>
                          </td>
                     </tr>
-                    <tr class="table-dark">
-                         <th>Sr No.</th>
-                         <th>Name</th>
-                         <th>SureName</th>
-                         <th>Email</th>
-                         <th>Gender</th>
-                         <th>Phone</th>
-                         <th>Age</th>
-                         <th>Department</th>
-                         <th>Actions</th>
-                    </tr>
                </tbody>
           </table>
-          <nav>
+          <nav class="m-4">
                <ul class="pagination justify-content-center">
+                    <li class="page-item fw-bold text-center m-2">
+                         <p class="m-0">Current record from {{ currentPage * 10 - 10 + 1 }} to {{currentPage * 10 -
+                              10 +
+                              currentData}} of Total: {{ totalData }}</p>
+                    </li>
                     <li class="page-item" [class.disabled]="currentPage === 1">
                          <button class="page-link" (click)="pagination(currentPage - 1)">Previous</button>
                     </li>
-                    <li class="page-item" *ngFor="let page of totalPagesArray" [class.active]="page === currentPage">
+                    <li *ngIf="getVisiblePages()[0] > 1" class="page-item">
+                         <button class="page-link">...</button>
+                    </li>
+                    <li class="page-item" *ngFor="let page of getVisiblePages()" [class.active]="page === currentPage">
                          <button class="page-link" (click)="pagination(page)">{{ page }}</button>
+                    </li>
+                    <li *ngIf="getVisiblePages()[getVisiblePages().length - 1] < totalPages" class="page-item">
+                         <button class="page-link">...</button>
                     </li>
                     <li class="page-item" [class.disabled]="currentPage === totalPages">
                          <button class="page-link" (click)="pagination(currentPage + 1)">Next</button>

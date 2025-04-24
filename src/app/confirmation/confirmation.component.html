@@ -1,1 +1,17 @@
-<p>confirmation works!</p>
+<div class="container mt-3 p-3">
+     <div class="card border-dark">
+          <div class="card-header {{bg}} text-white text-center">
+               <h4>{{header}}</h4>
+          </div>
+          <div class="card-body">
+               <div class="mb-3">
+                    <p>
+                         {{msg}}</p>
+               </div>
+          </div>
+          <div class="card-footer d-flex justify-content-end">
+               <!-- <button type="button" class="btn btn-secondary me-3" (click)="close()">Cancel</button> -->
+               <button type="button" class="btn {{bg}}" (click)="confirm(true)">{{btnName}}</button>
+          </div>
+     </div>
+</div>

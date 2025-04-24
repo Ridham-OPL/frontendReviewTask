@@ -4,6 +4,8 @@ import { Credential } from '../model/credential';
 import { MemoryServiceService } from '../service/memory-service.service';
 import { UserServiceService } from '../service/user-service.service';
 import { Router } from '@angular/router';
+import { ForgetPasswordComponent } from '../forget-password/forget-password.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +25,8 @@ export class LoginComponent {
   message: string = '';
   loginCredential: Credential = new Credential();
 
-  constructor(private builder: FormBuilder) {
+  constructor(private builder: FormBuilder,
+    public dialog: MatDialog) {
     this.loginData = this.builder.group({
       username: ['', Validators.required],
       password: ['', Validators.required],
@@ -38,10 +41,8 @@ export class LoginComponent {
       return;
     }
     this.loginCredential = this.loginData.value
-    console.log(this.loginCredential)
     this.userService.login(this.loginCredential).subscribe((data) => {
       this.user = data;
-      console.log(data)
       if (this.user.accessRole !== "[ADMIN]") {
         this.msg = "Unauthorized Access!"
         return
@@ -49,7 +50,7 @@ export class LoginComponent {
       this.memoryService.setCredential("token", this.user.token)
       this.memoryService.setCredential("username", this.user.username)
       // console.log(this.decodeToken(this.user.token))
-      this.router.navigate(['/navbar']);
+      this.router.navigate(['/Home']);
     },
       (error) => {
         if (error.status === 403) {
@@ -64,7 +65,8 @@ export class LoginComponent {
 
   }
   forgetPass() {
-
+    const dialogRef = this.dialog.open(ForgetPasswordComponent, {
+    });
   }
   get fieldNames() {
     return this.loginData.controls;
