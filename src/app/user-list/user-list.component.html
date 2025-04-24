@@ -1,0 +1,79 @@
+<div class="card-body m-5">
+     <div class="container mt-3">
+          <form [formGroup]="searchName">
+               <div class="input-group">
+                    <input type="text" class="form-control m-3" placeholder="Custom Width" name="name"
+                         formControlName="name">
+                    <div class="alert alert-danger" *ngIf="fieldNames['name'].touched && fieldNames['name'].invalid">
+                         <div *ngIf="fieldNames['name'].errors && fieldNames['name'].errors['name']">
+                              This Field is required !!
+                         </div>
+                    </div>
+                    <button class="btn btn-primary m-3" (click)="search()"
+                         [disabled]="searchName.invalid">Search</button>
+               </div>
+          </form>
+     </div>
+     <div class=" table-responsive">
+          <table class="table table-bordered p-3 mb-1 bg-dark text-white text-center">
+               <thead class="table-dark">
+                    <tr>
+                         <th>Sr No.</th>
+                         <th>Name</th>
+                         <th>User Name</th>
+                         <th>DOB</th>
+                         <th>Gender</th>
+                         <th>Phone</th>
+                         <th>Address</th>
+                         <th>PinCode</th>
+                         <th>Actions</th>
+                    </tr>
+               </thead>
+               <tbody>
+                    <tr *ngFor="let user of users; let i = index">
+                         <td>{{ i + 1 + (currentPage - 1) * pageSize }}</td>
+                         <td>{{ user.name }}</td>
+                         <td>{{ user.username }}</td>
+                         <td>{{ user.dob }}</td>
+                         <td>{{ user.gender }}</td>
+                         <td>{{ user.contactNumber }}</td>
+                         <td>{{ user.address }}</td>
+                         <td>{{ user.pinCode }}</td>
+                         <td>
+                              <div class="d-flex justify-content-center">
+                                   <button mat-mini-fab class="btn btn-warning btn-sm me-3"
+                                        (click)="updateDialog(user)">
+                                        Update</button>
+                                   <button mat-mini-fab class="btn btn-danger btn-sm" (click)="deleteDialog(user.id)">
+                                        Delete</button>
+                              </div>
+                         </td>
+                    </tr>
+                    <tr class="table-dark">
+                         <th>Sr No.</th>
+                         <th>Name</th>
+                         <th>SureName</th>
+                         <th>Email</th>
+                         <th>Gender</th>
+                         <th>Phone</th>
+                         <th>Age</th>
+                         <th>Department</th>
+                         <th>Actions</th>
+                    </tr>
+               </tbody>
+          </table>
+          <nav>
+               <ul class="pagination justify-content-center">
+                    <li class="page-item" [class.disabled]="currentPage === 1">
+                         <button class="page-link" (click)="pagination(currentPage - 1)">Previous</button>
+                    </li>
+                    <li class="page-item" *ngFor="let page of totalPagesArray" [class.active]="page === currentPage">
+                         <button class="page-link" (click)="pagination(page)">{{ page }}</button>
+                    </li>
+                    <li class="page-item" [class.disabled]="currentPage === totalPages">
+                         <button class="page-link" (click)="pagination(currentPage + 1)">Next</button>
+                    </li>
+               </ul>
+          </nav>
+     </div>
+</div>
