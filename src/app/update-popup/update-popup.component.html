@@ -1,0 +1,98 @@
+<div class="container mt-5">
+     <div class="card border-dark" style="max-height: 500px; overflow-y: auto;">
+          <div class="card-header bg-warning text-white">
+               <h4 class="mb-0">Update User</h4>
+          </div>
+          <form [formGroup]="userUpdate" (ngSubmit)="updateUser()">
+               <div class="card-body">
+                    <div class="mb-3">
+                         <label for="username" class="form-label">Username</label>
+                         <input id="username" type="text" class="form-control" formControlName="username">
+                    </div>
+                    <div class="alert alert-danger"
+                         *ngIf="fieldNames['username'].touched && fieldNames['username'].invalid">
+                         <div *ngIf="fieldNames['username'].errors && fieldNames['username'].errors['required']">
+                              This Field is required !!
+                         </div>
+                    </div>
+                    <div class="mb-3">
+                         <label for="name" class="form-label">Name</label>
+                         <input id="name" type="text" class="form-control" formControlName="name">
+                    </div>
+                    <div class="alert alert-danger" *ngIf="fieldNames['name'].touched && fieldNames['name'].invalid">
+                         <div *ngIf="fieldNames['name'].errors && fieldNames['name'].errors['required']">
+                              This Field is required !!
+                         </div>
+                    </div>
+                    <div class="mb-3">
+                         <label for="dob" class="form-label">Date of Birth</label>
+                         <input id="dob" type="text" class="form-control" formControlName="dob">
+                    </div>
+                    <div class="alert alert-danger" *ngIf="fieldNames['dob'].touched && fieldNames['dob'].invalid">
+                         <div *ngIf="fieldNames['dob'].errors && fieldNames['dob'].errors['required']">
+                              This Field is required !!
+                         </div>
+                    </div>
+                    <div class="mb-3">
+                         <label for="gender" class="form-label">Gender</label>
+                         <select id="gender" class="form-select" formControlName="gender">
+                              <option value="MALE">Male</option>
+                              <option value="FEMALE">Female</option>
+                              <option value="OTHER">Other</option>
+                         </select>
+                    </div>
+                    <div class="alert alert-danger"
+                         *ngIf="fieldNames['gender'].touched && fieldNames['gender'].invalid">
+                         <div *ngIf="fieldNames['gender'].errors && fieldNames['gender'].errors['required']">
+                              This Field is required !!
+                         </div>
+                    </div>
+                    <div class="mb-3">
+                         <label for="address" class="form-label">Address</label>
+                         <input id="address" type="text" class="form-control" formControlName="address">
+                    </div>
+                    <div class="alert alert-danger"
+                         *ngIf="fieldNames['address'].touched && fieldNames['address'].invalid">
+                         <div *ngIf="fieldNames['address'].errors && fieldNames['address'].errors['required']">
+                              This Field is required !!
+                         </div>
+                    </div>
+                    <div class="mb-3">
+                         <label for="contactNumber" class="form-label">Contact Number</label>
+                         <input id="contactNumber" type="text" class="form-control" formControlName="contactNumber">
+                    </div>
+                    <div class="alert alert-danger"
+                         *ngIf="fieldNames['contactNumber'].touched && fieldNames['contactNumber'].invalid">
+                         <div
+                              *ngIf="fieldNames['contactNumber'].errors && fieldNames['contactNumber'].errors['required']">
+                              This Field is required !!
+                         </div>
+                    </div>
+                    <div class="mb-3">
+                         <label for="pinCode" class="form-label">Pin Code</label>
+                         <input id="pinCode" type="text" class="form-control" formControlName="pinCode">
+                    </div>
+                    <div class="alert alert-danger"
+                         *ngIf="fieldNames['pinCode'].touched && fieldNames['pinCode'].invalid">
+                         <div *ngIf="fieldNames['pinCode'].errors && fieldNames['pinCode'].errors['required']">
+                              This Field is required !!
+                         </div>
+                    </div>
+                    <div class="mb-3">
+                         <label for="accessRole" class="form-label">Role</label>
+                         <input id="accessRole" type="text" class="form-control" formControlName="accessRole">
+                    </div>
+                    <div class="alert alert-danger"
+                         *ngIf="fieldNames['accessRole'].touched && fieldNames['accessRole'].invalid">
+                         <div *ngIf="fieldNames['accessRole'].errors && fieldNames['accessRole'].errors['required']">
+                              This Field is required !!
+                         </div>
+                    </div>
+               </div>
+               <div class="card-footer d-flex justify-content-end">
+                    <button type="button" class="btn btn-secondary me-3" (click)="onCancel()">Cancel</button>
+                    <button type="submit" class="btn btn-warning" [disabled]="userUpdate.invalid">Update</button>
+               </div>
+          </form>
+     </div>
+</div>
