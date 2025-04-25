@@ -48,4 +48,8 @@ export class UserServiceService {
   resetPassword(updatePass: UpdatePass) {
     return this.userService.post(this.url + "/reset-password", updatePass)
   }
+
+  downloadExcel() {
+    return this.userService.get(this.url + "/download", { responseType: 'blob' })
+  }
 }

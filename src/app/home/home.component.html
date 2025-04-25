@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-primary">
      <div class="container-fluid">
-          <div class="navbar-brand text-white">OPL Innovate</div>
+          <div class="navbar-brand text-white fw-bold">OPL Innovate</div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
                aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
                <span class="navbar-toggler-icon"></span>
@@ -8,14 +8,14 @@
           <div class="collapse navbar-collapse" id="navbarContent">
                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                         <a class="nav-link" routerLink="/Home">Dashboard</a>
+                         <a class="nav-link text-white" routerLink="/Home">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                         <a class="nav-link" routerLink="/Home/user-list">User List</a>
+                         <a class="nav-link text-white" routerLink="/Home/user-list">User List</a>
                     </li>
                </ul>
                <div class="d-flex justify-content-end me-4 text-white">
-                    <a class="nav-link logout-link" (click)="logout()">Logout</a>
+                    <a class="nav-link logout-link logout" (click)="logout()">Logout</a>
                </div>
           </div>
      </div>

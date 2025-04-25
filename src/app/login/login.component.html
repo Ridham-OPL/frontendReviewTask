@@ -30,26 +30,24 @@
                               </div>
                          </div>
                          <div class="mb-3">
-                              <label class="form-label">Captcha Code:</label>
+                              <label class="form-label ">Captcha Code:</label>
                               <div class="d-flex align-items-center">
-                                   <div class="captcha-box bg-primary text-white p-3 d-inline-block rounded">
+                                   <input type="text" id="submit" class="form-control m-3" placeholder="Enter Captcha"
+                                        name="captcha" formControlName="captcha" />
+                                   <div class="captcha-box border border-dark text-danger p-2 rounded">
                                         {{captchaText }}</div>
-                                   <div class="m-4">
-                                        <a class="fas fa-sync cursor-pointer" (click)="generateCaptcha()">Regenerate</a>
+                                   <div class="m-3">
+                                        <a class="fas fa-sync cursor-pointer"
+                                             (click)="generateCaptcha()"><mat-icon>sync</mat-icon></a>
                                    </div>
                               </div>
-                              <input type="text" id="submit" class="form-control mt-2" placeholder="Enter Captcha"
-                                   name="captcha" formControlName="captcha" />
                               <p id="key" class="text-danger mt-2"></p>
                          </div>
                          <div class="alert alert-danger" *ngIf="message">
                               {{ message }}
                          </div>
-
                          <div class="d-flex justify-content-around align-items-center mb-4">
-
                               <div class="form-check">
-
                                    <a href>Sign-Up</a>
                               </div>
                               <a (click)="forgetPass()" class="forgot-password-link">Forgot password?</a>

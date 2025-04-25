@@ -53,7 +53,6 @@ export class DashboardComponent {
             role: this.user.accessRole,
             address: this.user.address
           });
-          console.log(this.user.profileImage)
           this.profileUrl = 'assets/document/' + this.user.profileImage;
         },
         error: (error) => {

@@ -17,6 +17,8 @@ import { SetPasswordComponent } from './set-password/set-password.component';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import { Error404Component } from './error404/error404.component';
 import { HomeComponent } from './home/home.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import { HomeComponent } from './home/home.component';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatButtonModule,
+    MatIconModule
   ],
   providers: [
     provideHttpClient(withInterceptors([authInterceptor]))],

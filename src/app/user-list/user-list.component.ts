@@ -148,6 +148,18 @@ export class UserListComponent {
     })
   }
 
+  downloadExcel() {
+    const date = new Date().toLocaleDateString('en-GB').replace(/\//g, '_');
+    this.userService.downloadExcel().subscribe((response: Blob) => {
+      console.log(response)
+      const a = document.createElement('a');
+      a.href = window.URL.createObjectURL(response);
+      a.download = 'users_' + date + '.xlsx';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    })
+  }
   reset() {
     this.pagination(this.currentPage)
     this.searchName.value.name = ''

@@ -1,72 +1,89 @@
 <div class="container mt-5">
-     <div class="card">
-          <div class="card-header text-center">
+     <div class="card shadow-lg">
+          <div class="card-header text-center bg-primary text-white">
                <h2>Admin Dashboard</h2>
           </div>
           <div class="card-body">
                <form [formGroup]="userData">
-                    <!-- Profile section -->
-                    <div class="row align-items-center">
-                         <div class="col-md-4">
-                              <label class="form-label">Name:</label>
-                              <input type="text" class="form-control" name="name" formControlName="name" readonly>
-                         </div>
-                         <div class="col-md-5">
-                              <label class="form-label">Username:</label>
-                              <input type="text" class="form-control" name="username" formControlName="username"
-                                   readonly>
-                         </div>
-                         <div class="col-md-3 text-end">
-                              <ng-container *ngIf="getImageUrl(); else aliasBlock">
-                                   <img [src]="getImageUrl()" [alt]="setAltText()"
-                                        class="rounded-circle border border-dark font-dark" width="100" height="100">
-                              </ng-container>
-                              <ng-template #aliasBlock>
-                                   <div class="avatar-fallback">
-                                        {{ getInitials() }}
+                    <div class="row">
+                         <!-- Left Section: All Input Fields -->
+                         <div class="col-md-8">
+                              <div class="row mb-4">
+                                   <div class="col-md-6 mb-3">
+                                        <label class="form-label">Name:</label>
+                                        <input type="text" class="form-control custom-input" name="name"
+                                             formControlName="name" readonly>
                                    </div>
-                              </ng-template>
-                              <input type="file" class="form-control mt-3" (change)="onFileSelected($event)"
+                                   <div class="col-md-6 mb-3">
+                                        <label class="form-label">Username:</label>
+                                        <input type="text" class="form-control custom-input" name="username"
+                                             formControlName="username" readonly>
+                                   </div>
+                              </div>
+
+                              <!-- Personal Information Section -->
+                              <div class="row mb-4">
+                                   <div class="col-md-6 mb-3">
+                                        <label class="form-label">Date of Birth:</label>
+                                        <input type="text" class="form-control custom-input" name="dob"
+                                             formControlName="dob" readonly>
+                                   </div>
+                                   <div class="col-md-6 mb-3">
+                                        <label class="form-label">Gender:</label>
+                                        <input type="text" class="form-control custom-input" name="gender"
+                                             formControlName="gender" readonly>
+                                   </div>
+                              </div>
+
+                              <!-- Contact Information Section -->
+                              <div class="row mb-4">
+                                   <div class="col-md-6 mb-3">
+                                        <label class="form-label">Pin Code:</label>
+                                        <input type="text" class="form-control custom-input" name="pincode"
+                                             formControlName="pincode" readonly>
+                                   </div>
+                                   <div class="col-md-6 mb-3">
+                                        <label class="form-label">Contact Number:</label>
+                                        <input type="text" class="form-control custom-input" name="mobile"
+                                             formControlName="mobile" readonly>
+                                   </div>
+                              </div>
+
+                              <!-- Role and Address Section -->
+                              <div class="row mb-4">
+                                   <div class="col-md-6 mb-3">
+                                        <label class="form-label">Access Role:</label>
+                                        <input type="text" class="form-control custom-input" name="role"
+                                             formControlName="role" readonly>
+                                   </div>
+                                   <div class="col-md-6 mb-3">
+                                        <label class="form-label">Address:</label>
+                                        <input type="text" class="form-control custom-input" name="address"
+                                             formControlName="address" readonly>
+                                   </div>
+                              </div>
+                         </div>
+
+                         <!-- Right Section: Profile Picture -->
+                         <div class="col-md-4 text-center">
+                              <label class="form-label">Profile Picture:</label>
+                              <div class="d-flex justify-content-center mb-3">
+                                   <ng-container *ngIf="getImageUrl(); else aliasBlock">
+                                        <img [src]="getImageUrl()" [alt]="setAltText()"
+                                             class="rounded-circle border border-dark shadow-sm" width="150"
+                                             height="150">
+                                   </ng-container>
+                                   <ng-template #aliasBlock>
+                                        <div class="avatar-fallback rounded-circle bg-primary text-white d-flex align-items-center justify-content-center"
+                                             style="width: 150px; height: 150px; font-size: 36px;">
+                                             {{ getInitials() }}
+                                        </div>
+                                   </ng-template>
+                              </div>
+                              <input type="file" class="form-control custom-input" (change)="onFileSelected($event)"
                                    accept="image/*">
-                              <button class="btn btn-primary mt-2" (click)="uploadProfile()">Upload Profile</button>
-                         </div>
-
-                    </div>
-
-                    <!-- Other details section -->
-                    <div class="row mt-4">
-                         <div class="col-md-6">
-                              <label class="form-label">Date of Birth:</label>
-                              <input type="text" class="form-control" name="dob" formControlName="dob" readonly>
-                         </div>
-                         <div class="col-md-6">
-                              <label class="form-label">Gender:</label>
-                              <input type="text" class="form-control" name="gender" formControlName="gender" readonly>
-                         </div>
-                    </div>
-
-                    <div class="row mt-3">
-                         <div class="col-md-6">
-                              <label class="form-label">Pin Code:</label>
-                              <input type="text" class="form-control" name="pincode" formControlName="pincode" readonly>
-                         </div>
-                         <div class="col-md-6">
-                              <label class="form-label">Contact Number:</label>
-                              <input type="text" class="form-control" name="mobile" formControlName="mobile" readonly>
-                         </div>
-                    </div>
-
-                    <div class="row mt-3">
-                         <div class="col-md-12">
-                              <label class="form-label">Access Role:</label>
-                              <input type="text" class="form-control" name="role" formControlName="role" readonly>
-                         </div>
-                    </div>
-
-                    <div class="row mt-3">
-                         <div class="col-md-12">
-                              <label class="form-label">Address:</label>
-                              <input type="text" class="form-control" name="address" formControlName="address" readonly>
+                              <button class="btn btn-primary mt-2 w-100" (click)="uploadProfile()">Upload
+                                   Profile</button>
                          </div>
                     </div>
                </form>
